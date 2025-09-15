@@ -1,0 +1,528 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="计算分数生成画像" this:计算分数生成画像.In_DataFolderPath="D:\1.RPA\External project\project\课程学习情况画像\data" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="In_DT_Excel" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="In_DT_Config" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="In_Dic_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="In_DataFolderPath" Type="InArgument(x:String)" />
+    <x:Property Name="In_DT_Web" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="In_Dic_Name_Web" Type="InArgument(scg:Dictionary(x:String, ui:GenericValue))" />
+    <x:Property Name="In_DT_ScoreConfig" Type="InArgument(sd:DataTable)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1207,3932</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>计算分数_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="64">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="60">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="计算分数生成画像" sap:VirtualizedContainerService.HintSize="1157,3867" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="ResultFile_Temp" />
+      <Variable x:TypeArguments="x:String" Name="ResultFile_Final" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="1115,53" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,976" sap2010:WorkflowViewState.IdRef="Sequence_12">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke 获取Excel数据 workflow" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Framework\获取Excel数据.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="In_FilePath">[In_DataFolderPath+"\原始表格.xlsx"]</InArgument>
+              <OutArgument x:TypeArguments="sd:DataTable" x:Key="Out_DT">[In_DT_Excel]</OutArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="In_Row_S">5</InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="In_AddHeaders">0</InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="In_SheetIndex">0</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke 获取Excel数据 workflow" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Framework\获取Excel数据.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="In_FilePath">[In_DataFolderPath+"\六边形表.xlsx"]</InArgument>
+              <OutArgument x:TypeArguments="sd:DataTable" x:Key="Out_DT">[In_DT_Config]</OutArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="In_Row_S">1</InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="In_AddHeaders">1</InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="In_SheetIndex">0</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke 获取Excel数据 workflow" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Framework\获取Excel数据.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="In_FilePath">[In_DataFolderPath+"\六边形表.xlsx"]</InArgument>
+              <OutArgument x:TypeArguments="sd:DataTable" x:Key="Out_DT">[In_DT_ScoreConfig]</OutArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="In_Row_S">1</InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="In_AddHeaders">1</InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="In_SheetIndex">1</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="通过下载好的表格获取网页平台数据" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Framework\获取Excel数据.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="In_FilePath">[In_DataFolderPath+"\教学平台网页数据.xlsx"]</InArgument>
+              <OutArgument x:TypeArguments="sd:DataTable" x:Key="Out_DT">[In_DT_Web]</OutArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="In_Row_S">1</InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="In_AddHeaders">1</InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="In_SheetIndex">0</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke 获取字典 workflow" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Framework\获取字典.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="In_DT">[In_DT_Web]</InArgument>
+              <OutArgument x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" x:Key="Out_Dic">[In_Dic_Name_Web]</OutArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="In_ValueTitle">
+                <Literal x:TypeArguments="x:String" Value="" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="In_KeyTitle">姓名</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="初始化配置表" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Framework\InitAllSettings.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="in_ConfigFile">D:\1.RPA\External project\project\课程学习情况画像\data\Config.xlsx</InArgument>
+              <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="out_Config">[In_Dic_Config]</OutArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_ConfigSheet">Settings</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[In_DT_Excel]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="1115,3682" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+      <ui:ForEachRow.Body>
+        <ActivityAction x:TypeArguments="sd:DataRow">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="mRow" />
+          </ActivityAction.Argument>
+          <If Condition="[Not io.File.Exists(In_DataFolderPath+&quot;\Output\&quot;+In_Dic_Config(&quot;课程名称&quot;).ToString+&quot;_分析评价_&quot;+mRow(1).ToString+&quot;.docx&quot;) and Not String.IsNullOrEmpty(mRow(1).ToString)]" sap:VirtualizedContainerService.HintSize="1081,3564" sap2010:WorkflowViewState.IdRef="If_1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="552,3401" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:Double" Name="TotalScore" />
+                  <Variable x:TypeArguments="x:Int32" Name="Rank_1" />
+                  <Variable x:TypeArguments="x:Int32" Name="Rank_2" />
+                  <Variable x:TypeArguments="x:Int32" Name="Rank_5" />
+                  <Variable x:TypeArguments="x:Int32" Name="Rank_6" />
+                  <Variable x:TypeArguments="x:Int32" Name="index" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="510,131" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+                  <ui:MultipleAssign.AssignOperations>
+                    <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+                        <ui:AssignOperation.To>
+                          <OutArgument x:TypeArguments="x:String">[ResultFile_Temp]</OutArgument>
+                        </ui:AssignOperation.To>
+                        <ui:AssignOperation.Value>
+                          <InArgument x:TypeArguments="x:String">[In_DataFolderPath+"\Temp\"+In_Dic_Config("课程名称").ToString+"_分析评价_"+mRow(1).ToString+".docx"]</InArgument>
+                        </ui:AssignOperation.Value>
+                      </ui:AssignOperation>
+                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
+                        <ui:AssignOperation.To>
+                          <OutArgument x:TypeArguments="x:String">[ResultFile_Final]</OutArgument>
+                        </ui:AssignOperation.To>
+                        <ui:AssignOperation.Value>
+                          <InArgument x:TypeArguments="x:String">[In_DataFolderPath+"\Output\"+In_Dic_Config("课程名称").ToString+"_分析评价_"+mRow(1).ToString+".docx"]</InArgument>
+                        </ui:AssignOperation.Value>
+                      </ui:AssignOperation>
+                    </scg:List>
+                  </ui:MultipleAssign.AssignOperations>
+                </ui:MultipleAssign>
+                <ui:CopyFile ContinueOnError="{x:Null}" Destination="[In_DataFolderPath+&quot;\Temp\&quot;+In_Dic_Config(&quot;课程名称&quot;).ToString+&quot;_分析评价_&quot;+mRow(1).ToString+&quot;.docx&quot;]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="510,163" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="[In_DataFolderPath+&quot;\&quot;+In_Dic_Config(&quot;课程名称&quot;).ToString+&quot;_分析评价模板.docx&quot;]" />
+                <Assign sap:VirtualizedContainerService.HintSize="510,61" sap2010:WorkflowViewState.IdRef="Assign_7">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Double">[TotalScore]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Double">0</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="510,53" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <TryCatch.Try>
+                    <Sequence sap:VirtualizedContainerService.HintSize="376,514" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="得分" DataTable="[In_DT_Config]" DefaultValue="[0]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="334,191" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_1" />
+                      <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="评语" DataTable="[In_DT_Config]" DefaultValue="[0]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="334,191" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_2" />
+                    </Sequence>
+                  </TryCatch.Try>
+                  <TryCatch.Catches>
+                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,23" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ActivityAction x:TypeArguments="s:Exception">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                        </ActivityAction.Argument>
+                      </ActivityAction>
+                    </Catch>
+                  </TryCatch.Catches>
+                </TryCatch>
+                <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="[index]" DataTable="[In_DT_Config]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="510,979" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+                  <ui:ForEachRow.Body>
+                    <ActivityAction x:TypeArguments="sd:DataRow">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="sd:DataRow" Name="mRow2" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="476,861" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="s:String[]" Name="arrParam" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign sap:VirtualizedContainerService.HintSize="434,61" sap2010:WorkflowViewState.IdRef="Assign_1">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="s:String[]">[arrParam]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="s:String[]">[mRow2.Item("数据来源").ToString.Split(new Char(){"|"c})]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="434,567" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[arrParam]">
+                          <ui:ForEach.Body>
+                            <ActivityAction x:TypeArguments="x:String">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+                              </ActivityAction.Argument>
+                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="305,440" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                                <Sequence.Variables>
+                                  <Variable x:TypeArguments="s:String[]" Name="arrTemp" />
+                                  <Variable x:TypeArguments="x:String" Name="Score" />
+                                  <Variable x:TypeArguments="x:Double" Name="TempValue" />
+                                </Sequence.Variables>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Assign sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_2">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="s:String[]">[arrTemp]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="s:String[]">[item.ToString.Split(new Char() {":"c})]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <Assign sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_9">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Double">[TempValue]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Double">0</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <If Condition="[In_Dic_Config.ContainsKey(arrTemp(0).ToString)]" sap:VirtualizedContainerService.HintSize="263,53" sap2010:WorkflowViewState.IdRef="If_3">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If.Then>
+                                    <If sap2010:Annotation.AnnotationText="这个条件大于0表示取原始表格excel的分数值，等于0的是取网页的分数值" Condition="[cint(In_Dic_Config(arrTemp(0).ToString).ToString)&gt;0]" sap:VirtualizedContainerService.HintSize="879,418" sap2010:WorkflowViewState.IdRef="If_4">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <If.Then>
+                                        <Assign sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_3">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Double">[TempValue]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Double">[cdbl(mRow.Item(cint(In_Dic_Config(arrTemp(0).ToString).ToString)).ToString)]</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                      </If.Then>
+                                      <If.Else>
+                                        <If Condition="[In_Dic_Name_Web.ContainsKey(mRow.Item(1).ToString)]" sap:VirtualizedContainerService.HintSize="571,224" sap2010:WorkflowViewState.IdRef="If_5">
+                                          <If.Then>
+                                            <Assign sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_5">
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Double">[TempValue]</OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Double">[cdbl(In_DT_Web.Rows(cint(In_Dic_Name_Web(mRow.Item(1).tostring))).Item(arrTemp(0).ToString))]</InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                          </If.Then>
+                                          <If.Else>
+                                            <Assign sap:VirtualizedContainerService.HintSize="263,61" sap2010:WorkflowViewState.IdRef="Assign_6">
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="x:Double">[TempValue]</OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="x:Double">0</InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                          </If.Else>
+                                        </If>
+                                      </If.Else>
+                                    </If>
+                                  </If.Then>
+                                  <If.Else>
+                                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_8">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </Sequence>
+                                  </If.Else>
+                                </If>
+                                <If Condition="[arrTemp(0).ToString=&quot;登录次数&quot;]" sap:VirtualizedContainerService.HintSize="263,53" sap2010:WorkflowViewState.IdRef="If_2">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If.Then>
+                                    <If Condition="[TempValue&gt;=480]" sap:VirtualizedContainerService.HintSize="913,359" sap2010:WorkflowViewState.IdRef="If_6">
+                                      <If.Then>
+                                        <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="得分" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="434,196" sap2010:WorkflowViewState.IdRef="UpdateRowItem_1" Row="[mRow2]" Value="[cdbl(mRow2.Item(&quot;得分&quot;).ToString)+cdbl(100*cdbl(arrTemp(1)))]" />
+                                      </If.Then>
+                                      <If.Else>
+                                        <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="得分" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="434,196" sap2010:WorkflowViewState.IdRef="UpdateRowItem_2" Row="[mRow2]" Value="[cdbl(mRow2.Item(&quot;得分&quot;).ToString)+cdbl(TempValue/480*100*cdbl(arrTemp(1)))]" />
+                                      </If.Else>
+                                    </If>
+                                  </If.Then>
+                                  <If.Else>
+                                    <ui:UpdateRowItem ColumnIndex="{x:Null}" ColumnName="得分" DisplayName="Update Row Item" sap:VirtualizedContainerService.HintSize="434,196" sap2010:WorkflowViewState.IdRef="UpdateRowItem_3" Row="[mRow2]" Value="[cdbl(mRow2.Item(&quot;得分&quot;).ToString)+cdbl(TempValue*cdbl(arrTemp(1)))]" />
+                                  </If.Else>
+                                </If>
+                              </Sequence>
+                            </ActivityAction>
+                          </ui:ForEach.Body>
+                        </ui:ForEach>
+                        <Assign sap:VirtualizedContainerService.HintSize="434,61" sap2010:WorkflowViewState.IdRef="Assign_8">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Double">[TotalScore]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Double">[TotalScore+cdbl(mRow2.Item("得分").ToString)*cdbl(mRow2.Item("权重").ToString)]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ForEachRow.Body>
+                </ui:ForEachRow>
+                <ui:SortDataTable ColumnIndex="{x:Null}" DataColumn="{x:Null}" ColumnName="得分" DataTable="[In_DT_Config]" DisplayName="Sort Data Table" sap:VirtualizedContainerService.HintSize="510,246" sap2010:WorkflowViewState.IdRef="SortDataTable_1" Order="Decending" OutputDataTable="[In_DT_Config]" SortOrder="Descending" />
+                <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="510,81" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="data\六边形表_Temp.xlsx" />
+                <ui:CopyFile ContinueOnError="{x:Null}" Destination="data\六边形表_Temp.xlsx" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="510,163" sap2010:WorkflowViewState.IdRef="CopyFile_2" Path="data\六边形表.xlsx" />
+                <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="510,288" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" InstanceCachePeriod="3000" WorkbookPath="data\六边形表_Temp.xlsx">
+                  <ui:ExcelApplicationScope.Body>
+                    <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,179" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:ExcelWriteRange AddHeaders="True" DataTable="[In_DT_Config]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="Sheet1" StartingCell="A1" />
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:ExcelApplicationScope.Body>
+                </ui:ExcelApplicationScope>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke 替换Word内容 workflow" sap:VirtualizedContainerService.HintSize="510,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Framework\替换Word内容-vba.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:Double" x:Key="In_TotalScore">[TotalScore]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="In_FilePath_Temp">[ResultFile_Temp]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="In_FilePath_Final">[ResultFile_Final]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="In_Name">[mRow.Item(1).ToString]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="In_DataFolderPath">[In_DataFolderPath]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" ReplyTo="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" Body="[mRow.Item(1).ToString+In_Dic_Config(&quot;邮件内容&quot;).ToString]" DisplayName="Send SMTP Mail Message" Email="[In_Dic_Config(&quot;发件箱&quot;).ToString]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="510,153" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="False" Password="[In_Dic_Config(&quot;授权码&quot;).ToString]" Port="[cint(In_Dic_Config(&quot;smtp端口&quot;).ToString)]" SecureConnection="Auto" Server="[In_Dic_Config(&quot;smtp地址&quot;).ToString]" Subject="[mRow.Item(1).ToString+In_Dic_Config(&quot;邮件主题&quot;).ToString]" To="[In_Dic_Config(&quot;收件箱&quot;).ToString]">
+                  <ui:SendMail.Files>
+                    <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                      <InArgument x:TypeArguments="x:String">[ResultFile_Final]</InArgument>
+                    </scg:List>
+                  </ui:SendMail.Files>
+                </ui:SendMail>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="510,112" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[mRow.Item(1).ToString+&quot;画像已生成&quot;]" />
+                <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="510,53" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <TryCatch.Try>
+                    <Sequence sap:VirtualizedContainerService.HintSize="376,514" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="得分" DataTable="[In_DT_Config]" DisplayName="Remove Data Column" sap:VirtualizedContainerService.HintSize="334,191" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_1" />
+                      <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="评语" DataTable="[In_DT_Config]" DisplayName="Remove Data Column" sap:VirtualizedContainerService.HintSize="334,191" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_3" />
+                    </Sequence>
+                  </TryCatch.Try>
+                  <TryCatch.Catches>
+                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,23" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ActivityAction x:TypeArguments="s:Exception">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                        </ActivityAction.Argument>
+                      </ActivityAction>
+                    </Catch>
+                  </TryCatch.Catches>
+                </TryCatch>
+                <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="510,192" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+                  <ui:CommentOut.Body>
+                    <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                    </Sequence>
+                  </ui:CommentOut.Body>
+                </ui:CommentOut>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <If Condition="[String.IsNullOrEmpty(mRow(1).ToString)]" sap:VirtualizedContainerService.HintSize="484,254" sap2010:WorkflowViewState.IdRef="If_7">
+                <If.Then>
+                  <ui:Break sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Break_1" />
+                </If.Then>
+                <If.Else>
+                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_15">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </If.Else>
+          </If>
+        </ActivityAction>
+      </ui:ForEachRow.Body>
+    </ui:ForEachRow>
+  </Sequence>
+</Activity>
